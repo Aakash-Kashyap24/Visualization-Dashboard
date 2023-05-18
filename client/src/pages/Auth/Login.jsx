@@ -3,18 +3,26 @@ import Header from "../../components/Header";
 import Login from "../../components/Login";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {useAlert} from 'react-alert'
+import { loadUser } from "../../action/userAction";
 
 
 
 export default function LoginPage() {
 
+    const dispatch = useDispatch()
     const alert=useAlert();
     const Navigate=useNavigate();
     const {user,isLoading,isAuthenticated,error}=useSelector((state)=>state.user)
-   
+  useEffect(() => {
+  
+    if (isAuthenticated) {
+        Navigate('/admin/dashoard')
+    }
+    
+  }, [isAuthenticated,error,alert])
 
     useEffect(() => {
         if (error) {
@@ -23,6 +31,7 @@ export default function LoginPage() {
         if (isAuthenticated) {
             Navigate('/admin/dashboard')
         }
+        dispatch(loadUser())
     }, [isAuthenticated])
 
     useEffect(() => {
