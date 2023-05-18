@@ -42,3 +42,5 @@ export const login = asyncHandler(async (req: Request, res: Response, next: Next
         return next(new ErrorHandler(500, error));
     }
 });
+
+

@@ -9,10 +9,13 @@ import {
 import './App.css'
 import LoginPage from './pages/Auth/Login.jsx';
 import Dashboard from './pages/Admin/Dashboard.jsx';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function App() {
 
+  const dispatch=useDispatch()
+  const {isAuthenticated,isLoading}=useSelector((state)=>state.user)
 
   return (
     <>

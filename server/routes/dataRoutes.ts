@@ -8,4 +8,4 @@ router.get('/getData', getData);
 
 
 
-export const dataRoutes​​=router;
+export const dataRoutes=router;
